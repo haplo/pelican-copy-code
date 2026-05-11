@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pelican-copy-code"
+version = "0.1.0"
+description = "Adds a copy-to-clipboard button to code blocks in Pelican sites"
+authors = [{ name = "Fidel Ramos", email = "contact.gyldd@8shield.net" }]
+license = { text = "MIT" }
+readme = "README.md"
+keywords = ["pelican", "plugin"]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Pelican :: Plugins",
+    "Framework :: Pelican",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Internet :: WWW/HTTP",
+]
+dependencies = ["pelican>=4.9", "beautifulsoup4>=4.12"]
+
+[project.entry-points."pelican.plugins"]
+copy_code = "pelican.plugins.copy_code"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pelican"]

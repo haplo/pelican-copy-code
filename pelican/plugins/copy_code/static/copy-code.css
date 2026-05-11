@@ -1,0 +1,37 @@
+.code-block-wrapper {
+  position: relative;
+}
+
+.code-block-wrapper .copy-button {
+  background: var(--copy-code-button-bg, #fff);
+  border-radius: 4px;
+  border: 1px solid var(--copy-code-button-color, #000);
+  color: var(--copy-code-button-color, #000);
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 0.78em;
+  opacity: 0;
+  padding: 4px 8px;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  transition: opacity 0.2s ease;
+}
+
+.code-block-wrapper:hover .copy-button,
+.code-block-wrapper .copy-button:focus {
+  opacity: 0.7;
+}
+
+.code-block-wrapper:hover .copy-button:hover {
+  opacity: 1;
+}
+
+.code-block-wrapper.copy-button-always .copy-button {
+  opacity: 0.7;
+}
+
+.code-block-wrapper .copy-button.copied {
+  color: var(--copy-code-copied-color, #d9411e);
+  opacity: 1;
+}
