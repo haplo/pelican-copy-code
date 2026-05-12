@@ -3,34 +3,10 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
+from .settings import get_copy_code_settings
+
 PLUGIN_STATIC_DIR = Path(__file__).parent / "static"
 
-# Default settings, users can override in pelicanconf.py
-COPY_CODE_DEFAULTS = {
-    "AUTO_INJECT_ASSETS": True,
-    "BUTTON_BG": None,
-    "BUTTON_COLOR": None,
-    "BUTTON_TEXT": "Copy",
-    "COPIED_COLOR": None,
-    "COPIED_TEXT": "Copied!",
-    "DISPLAY": "hover",  # "hover" or "always"
-    "FALLBACK_ENABLED": True,
-    "OUTPUT_DIR": "copy_code",
-    "TARGET_CLASS": "highlight",
-    "WRAPPER_CLASS": "code-block-wrapper",
-}
-
-# Sub-directory under OUTPUT_PATH where this plugin's assets are written, and
-# also the URL path segment used when referencing them from injected tags.
-OUTPUT_SUBDIR = "copy_code"
-
-
-def get_copy_code_settings(pelican_settings):
-    """Merges user-defined settings with defaults."""
-    return {
-        **COPY_CODE_DEFAULTS,
-        **pelican_settings.get("COPY_CODE_OPTIONS", {}),
-    }
 
 def process_code_blocks(content):
     """Process article/page content at build time.
@@ -46,15 +22,16 @@ def process_code_blocks(content):
     soup = BeautifulSoup(content._content, "html.parser")
 
     copy_code_settings = get_copy_code_settings(content.settings)
+    auto_inject = copy_code_settings["AUTO_INJECT_ASSETS"]
     button_bg = copy_code_settings["BUTTON_BG"]
     button_color = copy_code_settings["BUTTON_COLOR"]
     button_text = copy_code_settings["BUTTON_TEXT"]
     copied_color = copy_code_settings["COPIED_COLOR"]
     copied_text = copy_code_settings["COPIED_TEXT"]
     display = copy_code_settings["DISPLAY"]
+    output_dir = copy_code_settings["OUTPUT_DIR"]
     target_class = copy_code_settings["TARGET_CLASS"]
     wrapper_class = copy_code_settings["WRAPPER_CLASS"]
-    auto_inject = copy_code_settings["AUTO_INJECT_ASSETS"]
 
     blocks = soup.find_all("div", class_=target_class)
     if not blocks:
@@ -87,7 +64,7 @@ def process_code_blocks(content):
 
     if auto_inject:
         siteurl = content.settings.get("SITEURL", "") or ""
-        base = f"{siteurl.rstrip('/')}/{OUTPUT_SUBDIR}"
+        base = f"{siteurl.rstrip('/')}/{output_dir}"
         css_link = soup.new_tag(
             "link", rel="stylesheet", href=f"{base}/copy-code.css"
         )
