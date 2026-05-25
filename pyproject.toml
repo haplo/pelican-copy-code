@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pelican-copy-code"
-version = "0.1.0"
+version = "0.2.0"
 description = "Adds a copy-to-clipboard button to code blocks in Pelican sites"
 authors = [{ name = "Fidel Ramos", email = "contact.gyldd@8shield.net" }]
 license = { text = "MIT" }
@@ -12,7 +12,7 @@ readme = "README.md"
 keywords = ["pelican", "plugin"]
 requires-python = ">=3.9"
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Framework :: Pelican :: Plugins",
     "Framework :: Pelican",
     "Intended Audience :: Developers",
