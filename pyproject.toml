@@ -21,6 +21,12 @@ classifiers = [
 ]
 dependencies = ["pelican>=4.9", "beautifulsoup4>=4.12"]
 
+[project.urls]
+Homepage = "https://github.com/haplo/pelican-copy-code"
+Repository = "https://github.com/haplo/pelican-copy-code"
+Issues = "https://github.com/haplo/pelican-copy-code/issues"
+Changelog = "https://github.com/haplo/pelican-copy-code/blob/main/CHANGELOG.md"
+
 [project.entry-points."pelican.plugins"]
 copy_code = "pelican.plugins.copy_code"
 
