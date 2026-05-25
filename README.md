@@ -108,10 +108,11 @@ cd pelican-copy-code
 uv sync
 ```
 
-To build the package:
+To build and publish the package to PyPI:
 
 ```bash
 uv build
+uv publish
 ```
 
 To run the plugin in a Pelican site during development, install it in editable mode into the site's virtual environment:
