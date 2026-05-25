@@ -3,6 +3,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
+from .i18n import _, init_translations
 from .settings import get_copy_code_settings
 
 PLUGIN_STATIC_DIR = Path(__file__).parent / "static"
@@ -21,13 +22,20 @@ def process_code_blocks(content):
 
     soup = BeautifulSoup(content._content, "html.parser")
 
+    lang = content.settings.get("DEFAULT_LANG", "en")
+    init_translations(lang)
+
     copy_code_settings = get_copy_code_settings(content.settings)
     auto_inject = copy_code_settings["AUTO_INJECT_ASSETS"]
     button_bg = copy_code_settings["BUTTON_BG"]
     button_color = copy_code_settings["BUTTON_COLOR"]
     button_text = copy_code_settings["BUTTON_TEXT"]
+    if button_text is None:
+        button_text = _("Copy")
     copied_color = copy_code_settings["COPIED_COLOR"]
     copied_text = copy_code_settings["COPIED_TEXT"]
+    if copied_text is None:
+        copied_text = _("Copied!")
     display = copy_code_settings["DISPLAY"]
     output_dir = copy_code_settings["OUTPUT_DIR"]
     target_class = copy_code_settings["TARGET_CLASS"]

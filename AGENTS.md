@@ -11,21 +11,31 @@ pelican-copy-code/
 ├── AGENTS.md                          # This file
 ├── README.md                          # User-facing documentation
 ├── pyproject.toml                     # Package metadata & entry points
+├── translate.sh                       # I18n workflow script (extract/create/update/compile)
 └── pelican/
     └── plugins/
         └── copy_code/
             ├── __init__.py            # Plugin registration (signals)
             ├── copy_code.py           # Core logic: HTML processing + static files
-            └── static/
-                ├── copy-code.css      # Button styles (hover, copied state)
-                └── copy-code.js       # Clipboard interaction via navigator.clipboard
+            ├── i18n.py                # gettext translation wrapper (lazy init)
+            ├── settings.py            # Default settings
+            ├── static/
+            │   ├── copy-code.css      # Button styles (hover, copied state)
+            │   └── copy-code.js       # Clipboard interaction via navigator.clipboard
+            └── i18n/
+                ├── messages.pot       # Translation template
+                └── <lang>/            # Per-language catalogs (e.g. en/, es/)
+                    └── LC_MESSAGES/
+                        ├── messages.po
+                        └── messages.mo
 ```
 
 ## Build System
 
-- Build backend: `setuptools`
+- Build backend: `hatchling`
 - Entry point: `pelican.plugins.copy_code`
 - Dependencies: `pelican>=4.9`, `beautifulsoup4>=4.12`
+- Dev dependencies: `babel` (i18n extraction/compilation)
 
 ## Coding Conventions
 
@@ -56,7 +66,24 @@ No formal test suite is included in the initial version. Manual verification:
 3. Inspect the output HTML for `.code-block-wrapper` and `.copy-button` elements.
 4. Click the button in a browser and confirm the clipboard content matches the code block.
 
-## Documentation
+## Internationalization (i18n)
+
+User-facing strings (`BUTTON_TEXT` and `COPIED_TEXT` defaults) are marked for translation via gettext. The `i18n.py` module provides a lazy-init `_()` wrapper backed by `gettext.translation()` with domain `"messages"`.
+
+### Translation workflow
+
+- `./translate.sh extract` — scan Python source and regenerate `messages.pot`.
+- `./translate.sh create <LANG>` — initialize a new language catalog (fails if already exists).
+- `./translate.sh update` — merge changes from `messages.pot` into all existing `.po` files.
+- `./translate.sh compile` — compile all `.po` files to `.mo`.
+
+### Runtime behavior
+
+- The locale for translation is taken from Pelican's `DEFAULT_LANG` setting (falls back to `"en"`).
+- Translations are only applied to `BUTTON_TEXT` / `COPIED_TEXT` when the user has **not** overridden them in `COPY_CODE_OPTIONS`. If the user provides a custom string, it is used as-is.
+- If no `.mo` catalog exists for the requested language, `_()` returns the original string unchanged.
+
+## README
 
 - Keep `README.md` up-to-date when adding or changing user-facing settings, behavior, or static file paths.
 - When adding a new setting, add it to the **Configuration** table (with default and description) and to the example code block in `README.md`.

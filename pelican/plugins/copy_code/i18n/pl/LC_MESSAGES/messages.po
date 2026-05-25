@@ -1,0 +1,30 @@
+# Polish translations for pelican-copy-code.
+# Copyright (C) 2026 Fidel Ramos
+# This file is distributed under the same license as the pelican-copy-code
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr "Skopiowano!"
+"Project-Id-Version: pelican-copy-code VERSION\n"
+"Report-Msgid-Bugs-To: contact.gyldd@8shield.net\n"
+"POT-Creation-Date: 2026-05-24 22:43+0100\n"
+"PO-Revision-Date: 2026-05-24 22:47+0100\n"
+"Last-Translator: Fidel Ramos <contact.gyldd@8shield.net>\n"
+"Language: pl\n"
+"Language-Team: pl <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: /home/fidel/Code/pelican-copy-code/pelican/plugins/copy_code/copy_code.py:34
+msgid "Copy"
+msgstr "Kopiuj"
+
+#: /home/fidel/Code/pelican-copy-code/pelican/plugins/copy_code/copy_code.py:39
+msgid "Copied!"
+msgstr "Skopiowano!"
+

@@ -1,0 +1,29 @@
+# Italian translations for pelican-copy-code.
+# Copyright (C) 2026 Fidel Ramos
+# This file is distributed under the same license as the pelican-copy-code
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr "Copiato!"
+"Project-Id-Version: pelican-copy-code VERSION\n"
+"Report-Msgid-Bugs-To: contact.gyldd@8shield.net\n"
+"POT-Creation-Date: 2026-05-24 22:43+0100\n"
+"PO-Revision-Date: 2026-05-24 22:47+0100\n"
+"Last-Translator: Fidel Ramos <contact.gyldd@8shield.net>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: /home/fidel/Code/pelican-copy-code/pelican/plugins/copy_code/copy_code.py:34
+msgid "Copy"
+msgstr "Copia"
+
+#: /home/fidel/Code/pelican-copy-code/pelican/plugins/copy_code/copy_code.py:39
+msgid "Copied!"
+msgstr "Copiato!"
+

@@ -1,11 +1,11 @@
-# Default settings, users can override in pelicanconf.py
+# Default settings, users can override in pelicanconf.py.
 COPY_CODE_DEFAULTS = {
     "AUTO_INJECT_ASSETS": True,
     "BUTTON_BG": None,
     "BUTTON_COLOR": None,
-    "BUTTON_TEXT": "Copy",
+    "BUTTON_TEXT": None,
     "COPIED_COLOR": None,
-    "COPIED_TEXT": "Copied!",
+    "COPIED_TEXT": None,
     "DISPLAY": "hover",  # "hover" or "always"
     "FALLBACK_ENABLED": True,
     "OUTPUT_DIR": "copy_code",

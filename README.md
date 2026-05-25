@@ -23,6 +23,12 @@ The plugin should be automatically detected and enabled by Pelican. However if y
 PLUGINS = ["copy_code"]
 ```
 
+## Requirements
+
+- Python >= 3.9
+- Pelican >= 4.9
+- beautifulsoup4 >= 4.12
+
 ## Configuration
 
 You can control the behavior of the plugin by setting `COPY_CODE_OPTIONS` in your `pelicanconf.py`. It should be a dictionary with these keys:
@@ -72,11 +78,25 @@ If you would rather include the assets yourself (for example to place them in `<
 
 The files are always copied to `{OUTPUT_PATH}/copy_code/` regardless of the `AUTO_INJECT_ASSETS` setting.
 
-## Requirements
+## Internationalization (i18n)
 
-- Python >= 3.9
-- Pelican >= 4.9
-- beautifulsoup4 >= 4.12
+The plugin includes compiled translations to multiple languages (see the [i18n dir](/pelican/plugins/copy_code/i18n/) for the current list). The translations will be activated automatically when using the [`DEFAULT_LANG` Pelican setting](https://docs.getpelican.com/en/latest/settings.html#DEFAULT_LANG) or when using the [i18n-subsites](https://github.com/pelican-plugins/i18n-subsites) plugin.
+
+The `BUTTON_TEXT` and `COPIED_TEXT` settings will override the texts, they are used as-is without translation.
+
+### Contributing a translation
+
+You need to install [Babel](https://pypi.org/project/babel/) for its `pybabel` utility. It's a development dependency so you should have it if you did `uv sync`.
+
+```bash
+# Create a new language catalog (e.g. Czech)
+./translate.sh create cz
+
+# Edit the .po file with your translations, then compile
+./translate.sh compile
+```
+
+Translation catalogs live in `pelican/plugins/copy_code/i18n/{lang}/LC_MESSAGES/`. Both `.po` and compiled `.mo` files are committed to the repository.
 
 ## Development
 
