@@ -2,7 +2,7 @@
 
 A [Pelican](https://getpelican.com/) namespace plugin that adds a **Copy to clipboard** button to all code blocks at build time.
 
-![Screenshot of pelican-copy-code in action](copy_code_button.webp)
+![Screenshot of pelican-copy-code in action](https://raw.githubusercontent.com/haplo/pelican-copy-code/main/copy_code_button.webp)
 
 ## Features
 
